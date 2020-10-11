@@ -2,25 +2,16 @@ package com.company;
 
 public class Player {
     private String name;
-  private boolean isAttacker;
+
     public Player(String name) {
         this.name = name;
-        this.hand = new Hand();
-    }
 
-    private Hand hand;
-    public Hand getHand(){
-        return hand;
     }
-    public Card selectCardToHit(){
-
-        return card;
-    }
-    public Card selectCardToDefend(){
-
-        return card;
-    }
-    public boolean isThrow(){
-
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Player");
+        sb.append(name);
+        return sb.toString();
     }
 }
