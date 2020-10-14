@@ -1,6 +1,6 @@
 package com.company;
 
-public class Card {
+public class Card implements Comparable<Card>{
    private Rank rank;
    private Suit suit;
 
@@ -28,4 +28,8 @@ public class Card {
       return sb.toString();
    }
 
+   @Override
+   public int compareTo(Card other) {
+      return this.rank.getRank()-other.rank.getRank();
+   }
 }

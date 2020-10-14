@@ -2,6 +2,12 @@ package com.company;
 
 public class Fight {
   //  private Player source;
-    private Card down;
+
+  public Fight(Card down, Card up) {
+    this.down = down;
+    this.up = up;
+  }
+
+  private Card down;
     private Card up;
 }
