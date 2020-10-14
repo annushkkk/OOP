@@ -10,4 +10,24 @@ public class Fight {
 
   private Card down;
     private Card up;
+
+  public Card getDown() {
+    return down;
+  }
+
+  public void setDown(Card down) {
+    this.down = down;
+  }
+
+  public Card getUp() {
+    return up;
+  }
+
+  public void setUp(Card up) {
+    this.up = up;
+  }
+
+  public boolean isCovered() {
+    return up != null;
+  }
 }

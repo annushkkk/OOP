@@ -1,5 +1,7 @@
 package com.company;
 
+import com.sun.media.jfxmedia.events.PlayerEvent;
+
 import java.util.*;
 
 public class GameService {
@@ -85,8 +87,73 @@ public class GameService {
 //            Fight f = buildFight();
        // }
     }
+
+    private Round buildRound(Game g) {
+        Player source;
+        Player target;
+        Round r = new Round();
+        int maxCount = g.getPlayerToCardsMap().get(target).size();
+        List<Card> firstCards = getFirstThrownCards(source, maxCount);
+        maxCount = maxCount - firstCards.size();
+        r.getFights().add();
+        List<Card> truncList = getWithoutSrcAndTgt(g.getPlayers(), source, target);
+        for(Player p: truncList) {
+            List<Card> cards = getThrownCards();
+            maxCount = maxCount - cards.size();
+            if (maxCount == 0) {
+                break;
+            }
+        }
+        r.getFights().add();
+
+        
+    }
+
+    private List<Player> getWithoutSrcAndTgt(List<Player> list, Player src, Player tgt) {
+        return null;
+    }
+
+    private List<Card> getFirstThrownCards(List<Card> cards, int maxCount) {
+        Card firstCard = cards.remove(0);
+        List<Card> result = Arrays.asList(firstCard);
+
+        if (maxCount > 1 && cards.size() > 1) {
+            while (cards.size() > 0 && result.size() < maxCount && cards.get(0).getRank() == firstCard.getRank()) {
+                result.add(cards.remove(0));
+            }
+        }
+
+        return result;
+    }
+
+    private List<Card> getThrownCards(List<Card> cards, int maxCount, Round round) {
+        Set<Rank> ranks = new HashSet<>();
+        for(Fight f: round.getFights()) {
+            ranks.add(f.getDown().getRank());
+            if (f.getUp() != null) {
+                ranks.add(f.getUp().getRank());
+            }
+        }
+
+        List<Card> result = new ArrayList<>();
+
+        for (Card c: cards) {
+            if (result.size() == maxCount) {
+                break;
+            }
+
+            if (ranks.contains(c.getRank())) {
+                result.add(c);
+            }
+        }
+
+        cards.removeAll(result);
+        return result;
+    }
+
+
     private boolean isThrownUp(Game g){
-    if()
+      return false;
     }
 
     private Player getSourcePlayer(Game g, int indexCurrentSource, boolean isPickedUp) {
